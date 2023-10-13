@@ -1,29 +1,22 @@
-package com.geektext19.restapi.repositories.entities;
+package com.geektext19.restapi.controllers.profile_management.requests;
 
-public class User {
-    private String username;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+// TODO: Refactor into a base class (abstract BaseUserRequest main)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class UpdateUserRequest {
     private String password;
     private String fullName;
-    private String email;
     private String address;
 
-    public User() {
+    public UpdateUserRequest() {
     }
 
-    public User(String username, String password, String fullName, String email, String address) {
-        this.username = username;
+    public UpdateUserRequest(String password, String fullName, String address) {
         this.password = password;
         this.fullName = fullName;
-        this.email = email;
         this.address = address;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -40,14 +33,6 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getAddress() {

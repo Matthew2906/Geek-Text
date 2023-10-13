@@ -1,6 +1,7 @@
 package com.geektext19.restapi.services.profile_management;
 
 import com.geektext19.restapi.controllers.profile_management.requests.CreateUserRequest;
+import com.geektext19.restapi.controllers.profile_management.requests.UpdateUserRequest;
 import com.geektext19.restapi.controllers.profile_management.responses.UserResponse;
 
 public interface ProfileManagement {
@@ -16,4 +17,11 @@ public interface ProfileManagement {
      * @param request the data to create the User
      */
     void createUser(CreateUserRequest request);
+
+    /**
+     * Updates a User based on user request
+     * @param username the username of the User to be updated
+     * @param request the data to update
+     */
+    void updateUser(String username, UpdateUserRequest request);
 }
