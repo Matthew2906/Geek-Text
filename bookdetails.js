@@ -9,9 +9,9 @@ app.use(bodyParser.json());
 // MySQL database connection configuration
 const dbConfig = {
   host: 'localhost',
-  user: 'your-username',
-  password: 'your-password',
-  database: 'your-database-name'
+  user: 'team19admin',
+  password: 'cen4010',
+  database: 'team19server'
 };
 
 // Create a connection pool
