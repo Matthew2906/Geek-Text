@@ -1,33 +1,27 @@
-package com.geektext19.restapi.entities;
+package com.geektext19.restapi.controllers.book_sorting.requests;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.geektext19.restapi.repositories.book_sorting.BookRepository;
 
-@Entity
-@Table(name = "Book_List")
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ISBN")
+import java.util.List;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class RetrieveBookList {
+
     private String ISBN;
-    @Column(name = "bookName")
     private String bookName;
-    @Column(name = "description")
     private String description;
-    @Column(name = "Price")
     private double price;
-    @Column(name = "author")
     private String author;
-    @Column(name = "genre")
     private String genre;
-    @Column(name = "yearPublished")
     private int yearPublished;
-    @Column(name = "copiesSold")
     private int copiesSold;
 
-    public Book(){}
+    public RetrieveBookList(){
 
-    public Book(String ISBN, String bookName, String description, double price,
-           String author, String genre, int yearPublished, int copiesSold){
+    }
+
+    public RetrieveBookList(String ISBN, String bookName, String description, double price, String author, String genre, int yearPublished, int copiesSold) {
         this.ISBN = ISBN;
         this.bookName = bookName;
         this.description = description;
