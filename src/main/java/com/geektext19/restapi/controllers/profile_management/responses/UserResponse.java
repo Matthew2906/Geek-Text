@@ -1,23 +1,18 @@
-package com.geektext19.restapi.entities;
+package com.geektext19.restapi.controllers.profile_management.responses;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity // This tells Hibernate to make a table out of this class
-public class User {
-    @Id
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class UserResponse {
     private String username;
-    private String password;
     private String fullName;
     private String email;
     private String address;
 
-    public User() {
+    public UserResponse() {
     }
 
-    public User(String username, String password, String fullName, String email, String address) {
+    public UserResponse(String username, String fullName, String email, String address) {
         this.username = username;
-        this.password = password;
         this.fullName = fullName;
         this.email = email;
         this.address = address;
@@ -29,14 +24,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFullName() {
@@ -62,4 +49,5 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
