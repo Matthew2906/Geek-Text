@@ -1,21 +1,19 @@
-package com.geektext19.restapi.entities;
+package com.geektext19.restapi.controllers.profile_management.requests;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity // This tells Hibernate to make a table out of this class
-public class User {
-    @Id
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CreateUserRequest {
     private String username;
     private String password;
     private String fullName;
     private String email;
     private String address;
 
-    public User() {
+    public CreateUserRequest() {
     }
 
-    public User(String username, String password, String fullName, String email, String address) {
+    public CreateUserRequest(String username, String password, String fullName, String email, String address) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
