@@ -1,39 +1,15 @@
-package com.geektext19.restapi.entities;
+package com.geektext19.restapi.controllers.Book_details.request;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Book {
-    @Id
+public class CreateBookRequest {
     private String ISBN;
-
     private String bookName;
-
     private String description;
-
     private double price;
-
-    private String author;
-
+    private String authorName; // Representing author simply by name in this DTO
     private String genre;
-
+    private String publisher;
     private int yearPublished;
-
     private int copiesSold;
-
-    public Book(){}
-
-    public Book(String ISBN, String bookName, String description, double price,
-           String author, String genre, int yearPublished, int copiesSold){
-        this.ISBN = ISBN;
-        this.bookName = bookName;
-        this.description = description;
-        this.price = price;
-        this.author = author;
-        this.genre = genre;
-        this.yearPublished = yearPublished;
-        this.copiesSold = copiesSold;
-    }
 
     public String getISBN() {
         return ISBN;
@@ -67,12 +43,12 @@ public class Book {
         this.price = price;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public String getGenre() {
@@ -81,6 +57,14 @@ public class Book {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     public int getYearPublished() {
@@ -99,3 +83,4 @@ public class Book {
         this.copiesSold = copiesSold;
     }
 }
+

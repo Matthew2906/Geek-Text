@@ -1,9 +1,7 @@
 package com.geektext19.restapi.services.book_sorting;
 
-import com.geektext19.restapi.controllers.book_sorting.requests.RetrieveBookList;
-import com.geektext19.restapi.controllers.book_sorting.responses.BrowsingResponse;
 import com.geektext19.restapi.entities.Book;
-import com.geektext19.restapi.repositories.book_sorting.BookRepository;
+import com.geektext19.restapi.repositories.book_sorting.BookSortingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,14 +9,14 @@ import java.util.List;
 @Service
 public class BookSortingImpl implements BookSorting {
 
-    private final BookRepository bookRepository;
+    private final BookSortingRepository bookSortingRepository;
 
-    public BookSortingImpl(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookSortingImpl(BookSortingRepository bookSortingRepository) {
+        this.bookSortingRepository = bookSortingRepository;
     }
 
     public List<Book> getBooksByGenre(String genre){
-        return bookRepository.findBookByGenre(genre);
+        return bookSortingRepository.findBookByGenre(genre);
     }
 
 

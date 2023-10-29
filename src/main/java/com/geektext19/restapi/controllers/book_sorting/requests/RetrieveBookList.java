@@ -1,9 +1,6 @@
 package com.geektext19.restapi.controllers.book_sorting.requests;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.geektext19.restapi.repositories.book_sorting.BookRepository;
-
-import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RetrieveBookList {
