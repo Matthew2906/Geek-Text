@@ -3,47 +3,58 @@ package com.geektext19.restapi.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Book_List")
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ISBN")
-    private String ISBN;
-    @Column(name = "bookName")
+    private String isbn;
     private String bookName;
-    @Column(name = "description")
     private String description;
-    @Column(name = "Price")
     private double price;
-    @Column(name = "author")
     private String author;
-    @Column(name = "genre")
     private String genre;
-    @Column(name = "yearPublished")
+    private String publisher;
     private int yearPublished;
-    @Column(name = "copiesSold")
     private int copiesSold;
+    private double rating;
 
     public Book(){}
 
-    public Book(String ISBN, String bookName, String description, double price,
-           String author, String genre, int yearPublished, int copiesSold){
-        this.ISBN = ISBN;
+    public Book(String isbn, String bookName, String description, double price,
+                String author, String genre, String publisher, int yearPublished, int copiesSold, double rating){
+        this.isbn = isbn;
         this.bookName = bookName;
         this.description = description;
         this.price = price;
         this.author = author;
         this.genre = genre;
+        this.publisher = publisher;
         this.yearPublished = yearPublished;
         this.copiesSold = copiesSold;
+        this.rating = rating;
+
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String ISBN) {
+        this.isbn = ISBN;
     }
 
     public String getBookName() {
