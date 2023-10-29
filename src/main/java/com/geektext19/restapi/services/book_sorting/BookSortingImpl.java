@@ -16,6 +16,7 @@ public class BookSortingImpl implements BookSorting {
     }
 
     public List<Book> getBooksByGenre(String genre){
+
         List<Book> books = bookSortingRepository.findBookByGenre(genre);
         return books;
     }
@@ -39,6 +40,7 @@ public class BookSortingImpl implements BookSorting {
         }
 
         return top10Sold;
+
     }
 
 

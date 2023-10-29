@@ -13,6 +13,7 @@ public class Book {
     private String genre;
     private String publisher;
     private int yearPublished;
+
     private int copiesSold;
     private double rating;
 
