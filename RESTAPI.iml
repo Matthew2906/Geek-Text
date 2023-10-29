@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="FacetManager">
-    <facet type="azure" name="Azure">
+    <facet type="jpa" name="JPA">
       <configuration>
-        <option name="dotAzurePath" value="C:\Users\ntimr\IdeaProjects\GeekText19-RESTAPI\.azure" />
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping />
+        <naming-strategy-map />
       </configuration>
     </facet>
   </component>
