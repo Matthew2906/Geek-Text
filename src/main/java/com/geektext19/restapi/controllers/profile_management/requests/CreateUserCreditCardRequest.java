@@ -1,26 +1,24 @@
-package com.geektext19.restapi.entities;
+package com.geektext19.restapi.controllers.profile_management.requests;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-public class CreditCard {
-    @Id
+//TODO: Add annotations for the @NotEmpty for the parameters here
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CreateUserCreditCardRequest {
     private String creditCardNumber;
     private String cardholderName;
     private String expirationDate;
-    private String CVV;
-    @ManyToOne
-    @JoinColumn(name = "username", referencedColumnName = "username")
-    private User user;
-    public CreditCard() {
+    private String cvv;
+
+    public CreateUserCreditCardRequest() {
     }
 
-    public CreditCard(String creditCardNumber, String cardholderName, String expirationDate, String CVV, User user) {
+    public CreateUserCreditCardRequest(String creditCardNumber, String cardholderName, String expirationDate, String cvv) {
         this.creditCardNumber = creditCardNumber;
         this.cardholderName = cardholderName;
         this.expirationDate = expirationDate;
-        this.CVV = CVV;
-        this.user = user;
+        this.cvv = cvv;
     }
 
     public String getCreditCardNumber() {
@@ -47,19 +45,11 @@ public class CreditCard {
         this.expirationDate = expirationDate;
     }
 
-    public String getCVV() {
-        return CVV;
+    public String getCvv() {
+        return cvv;
     }
 
-    public void setCVV(String CVV) {
-        this.CVV = CVV;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
     }
 }
