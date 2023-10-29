@@ -1,14 +1,11 @@
 package com.geektext19.restapi.controllers.book_sorting.requests;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.geektext19.restapi.repositories.book_sorting.BookRepository;
-
-import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RetrieveBookList {
 
-    private String ISBN;
+    private String isbn;
     private String bookName;
     private String description;
     private double price;
@@ -21,8 +18,8 @@ public class RetrieveBookList {
 
     }
 
-    public RetrieveBookList(String ISBN, String bookName, String description, double price, String author, String genre, int yearPublished, int copiesSold) {
-        this.ISBN = ISBN;
+    public RetrieveBookList(String isbn, String bookName, String description, double price, String author, String genre, int yearPublished, int copiesSold) {
+        this.isbn = isbn;
         this.bookName = bookName;
         this.description = description;
         this.price = price;
@@ -32,12 +29,12 @@ public class RetrieveBookList {
         this.copiesSold = copiesSold;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getBookName() {
