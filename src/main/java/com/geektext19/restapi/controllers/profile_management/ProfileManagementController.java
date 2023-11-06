@@ -14,16 +14,16 @@ import com.geektext19.restapi.controllers.profile_management.exceptions.UserNotF
 @RequestMapping(ProfileManagementController.BASE_ENDPOINT)
 public class ProfileManagementController {
     public final static String BASE_ENDPOINT = "/profile-management";
-    private final ProfileManagement PROFILE_MANAGEMENT;
+    private final ProfileManagement profile_management;
 
-    public ProfileManagementController(ProfileManagement PROFILE_MANAGEMENT) {
-        this.PROFILE_MANAGEMENT = PROFILE_MANAGEMENT;
+    public ProfileManagementController(ProfileManagement profile_management) {
+        this.profile_management = profile_management;
     }
 
     @GetMapping("/{username}")
     public ResponseEntity<UserResponse> getUserDetails(@PathVariable String username){
         try {
-            UserResponse user = PROFILE_MANAGEMENT.getUserDetails(username);
+            UserResponse user = profile_management.getUserDetails(username);
             return ResponseEntity.ok(user);
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -35,7 +35,7 @@ public class ProfileManagementController {
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest request){
         try {
-            PROFILE_MANAGEMENT.createUser(request);
+            profile_management.createUser(request);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -46,7 +46,7 @@ public class ProfileManagementController {
     public ResponseEntity<UserResponse> updateUser(@PathVariable String username,
                                                    @RequestBody UpdateUserRequest request){
         try {
-            PROFILE_MANAGEMENT.updateUser(username, request);
+            profile_management.updateUser(username, request);
             return ResponseEntity.noContent().build();
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -59,7 +59,7 @@ public class ProfileManagementController {
     public ResponseEntity<Object> createCreditCard(@PathVariable String username, @RequestBody CreateUserCreditCardRequest request){
         // @jakarta.validation.Valid
         try {
-            PROFILE_MANAGEMENT.addCreditCardToUser(username, request);
+            profile_management.addCreditCardToUser(username, request);
             return ResponseEntity.noContent().build();
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
