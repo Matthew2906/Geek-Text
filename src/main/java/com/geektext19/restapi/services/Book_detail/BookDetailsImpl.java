@@ -34,7 +34,9 @@ public class BookDetailsImpl implements BookDetails{
     @Override
     public void createBook(CreateBookRequest request){
         Book book = new Book(request.getISBN(), request.getBookName(), request.getDescription(),
-                request.getPrice(), request.getAuthorName(), request.getGenre(), request.getYearPublished(), request.getCopiesSold());
+                request.getPrice(), request.getAuthorName(), request.getGenre(),request.getPublisher(),
+                request.getYearPublished(),
+                request.getCopiesSold(), request.getRating());
         BOOK_REPOSITORY.save(book);
     }
    public GetBookDetailsRequest getBookDetails(String ISBN){

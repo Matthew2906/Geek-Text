@@ -11,6 +11,8 @@ public class CreateBookRequest {
     private int yearPublished;
     private int copiesSold;
 
+    private double rating;
+
     public String getISBN() {
         return ISBN;
     }
@@ -82,5 +84,11 @@ public class CreateBookRequest {
     public void setCopiesSold(int copiesSold) {
         this.copiesSold = copiesSold;
     }
+
+    public double getRating(){ return rating;}
+
+    public void setRating(double rating) {this.rating = rating;}
 }
+
+
 
