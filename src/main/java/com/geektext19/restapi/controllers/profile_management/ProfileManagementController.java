@@ -5,9 +5,10 @@ import com.geektext19.restapi.controllers.profile_management.requests.CreateUser
 import com.geektext19.restapi.controllers.profile_management.requests.UpdateUserRequest;
 import com.geektext19.restapi.controllers.profile_management.responses.UserResponse;
 import com.geektext19.restapi.services.profile_management.ProfileManagement;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import com.geektext19.restapi.controllers.profile_management.exceptions.UserNotFoundException;
 
 @RestController
@@ -33,7 +34,7 @@ public class ProfileManagementController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest request){
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request){
         try {
             profile_management.createUser(request);
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -57,7 +58,6 @@ public class ProfileManagementController {
 
     @PostMapping("/credit-card/{username}")
     public ResponseEntity<Object> createCreditCard(@PathVariable String username, @RequestBody CreateUserCreditCardRequest request){
-        // @jakarta.validation.Valid
         try {
             profile_management.addCreditCardToUser(username, request);
             return ResponseEntity.noContent().build();
