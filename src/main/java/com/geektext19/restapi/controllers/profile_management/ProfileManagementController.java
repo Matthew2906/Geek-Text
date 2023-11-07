@@ -45,10 +45,10 @@ public class ProfileManagementController {
 
     @PatchMapping("/{username}")
     public ResponseEntity<UserResponse> updateUser(@PathVariable String username,
-                                                   @RequestBody UpdateUserRequest request){
+                                                   @Valid @RequestBody UpdateUserRequest request){
         try {
             profile_management.updateUser(username, request);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception ex) {
@@ -57,10 +57,11 @@ public class ProfileManagementController {
     }
 
     @PostMapping("/credit-card/{username}")
-    public ResponseEntity<Object> createCreditCard(@PathVariable String username, @RequestBody CreateUserCreditCardRequest request){
+    public ResponseEntity<Object> createCreditCard(@PathVariable String username,
+                                                   @Valid @RequestBody CreateUserCreditCardRequest request){
         try {
             profile_management.addCreditCardToUser(username, request);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception ex) {
