@@ -45,7 +45,7 @@ public class ProfileManagementController {
 
     @PatchMapping("/{username}")
     public ResponseEntity<UserResponse> updateUser(@PathVariable String username,
-                                                   @RequestBody UpdateUserRequest request){
+                                                   @Valid @RequestBody UpdateUserRequest request){
         try {
             profile_management.updateUser(username, request);
             return ResponseEntity.noContent().build();
@@ -57,7 +57,8 @@ public class ProfileManagementController {
     }
 
     @PostMapping("/credit-card/{username}")
-    public ResponseEntity<Object> createCreditCard(@PathVariable String username, @RequestBody CreateUserCreditCardRequest request){
+    public ResponseEntity<Object> createCreditCard(@PathVariable String username,
+                                                   @Valid @RequestBody CreateUserCreditCardRequest request){
         try {
             profile_management.addCreditCardToUser(username, request);
             return ResponseEntity.noContent().build();

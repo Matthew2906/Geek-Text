@@ -1,14 +1,19 @@
 package com.geektext19.restapi.controllers.profile_management.requests;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.NotBlank;
 
 //TODO: Add annotations for the @NotEmpty for the parameters here
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateUserCreditCardRequest {
+    @NotBlank(message = "Credit Card Number field can't be empty or null")
     private String creditCardNumber;
+    @NotBlank(message = "Card Holder Name field can't be empty or null")
     private String cardholderName;
+    @NotBlank(message = "expiration date field can't be empty or null")
     private String expirationDate;
+    @NotBlank(message = "CVV field can't be empty or null")
     private String cvv;
 
     public CreateUserCreditCardRequest() {
