@@ -8,6 +8,9 @@ import java.util.List;
 public interface BookSortingRepository extends CrudRepository<Book, String> {
     List<Book> findBookByGenre(String genre);
 
+    List<Book> findBookByPublisher(String publisher);
+
+    List<Book> findBookByIsbn(String isbn);
 
 
 }
