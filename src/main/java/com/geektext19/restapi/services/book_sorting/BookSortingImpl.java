@@ -41,28 +41,6 @@ public class BookSortingImpl implements BookSorting {
         return top10Sold;
     }
 
-    public List<Book> getBooksByRating(double rating){
-        Iterable<Book> books = bookSortingRepository.findAll();
-        List<Book> ratingPlus = new ArrayList<>();
-        for(Book b: books){
-            if(b.getRating() >= rating){
-                ratingPlus.add(b);
-            }
-        }
-        return ratingPlus;
-    }
-
-    public void discountBooksByPublishers(double discount, String publisher){
-        Iterable<Book> books = bookSortingRepository.findBookByPublisher(publisher);
-        for(Book b: books) {
-            if (b.getPublisher() != null) {
-                b.setPrice(b.getPrice()-((discount/100)*b.getPrice()));
-                bookSortingRepository.save(b);
-            }
-        }
-    }
-
-
 
 
 

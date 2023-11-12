@@ -3,7 +3,7 @@ package com.geektext19.restapi.controllers.book_sorting.requests;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UpdateBookRequest {
+public class RetrieveBookList {
 
     private String isbn;
     private String bookName;
@@ -11,28 +11,22 @@ public class UpdateBookRequest {
     private double price;
     private String author;
     private String genre;
-    private String publisher;
     private int yearPublished;
     private int copiesSold;
-    private double rating;
 
-    public UpdateBookRequest(){
+    public RetrieveBookList(){
 
     }
 
-    public UpdateBookRequest(String isbn, String bookName, String description,
-                            double price, String author, String genre,
-                            String publisher, int yearPublished, int copiesSold, double rating) {
+    public RetrieveBookList(String isbn, String bookName, String description, double price, String author, String genre, int yearPublished, int copiesSold) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.description = description;
         this.price = price;
         this.author = author;
         this.genre = genre;
-        this.publisher = publisher;
         this.yearPublished = yearPublished;
         this.copiesSold = copiesSold;
-        this.rating = rating;
     }
 
     public String getIsbn() {
@@ -83,14 +77,6 @@ public class UpdateBookRequest {
         this.genre = genre;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
     public int getYearPublished() {
         return yearPublished;
     }
@@ -105,13 +91,5 @@ public class UpdateBookRequest {
 
     public void setCopiesSold(int copiesSold) {
         this.copiesSold = copiesSold;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
     }
 }
