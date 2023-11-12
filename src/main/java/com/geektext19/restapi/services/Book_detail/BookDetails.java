@@ -24,8 +24,9 @@ public interface BookDetails {
      * @return
      */
     void createBook(CreateBookRequest request);
-    GetBookDetailsRequest getBookDetails(String isbn);
+    Book getBookDetails(String isbn);
     List<Book> getBooklist(String author_id);
+
 
 
 }

@@ -39,8 +39,9 @@ public class BookDetailsImpl implements BookDetails{
                 request.getCopiesSold(), request.getRating());
         BOOK_REPOSITORY.save(book);
     }
-   public GetBookDetailsRequest getBookDetails(String ISBN){
-       return null;
+   public Book getBookDetails(String ISBN){
+      Book book = BOOK_REPOSITORY.findBookByIsbn(ISBN);
+      return book;
    }
     public List<Book> getBooklist(String author_id){
        return null;
