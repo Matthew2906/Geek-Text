@@ -44,7 +44,7 @@ public class ProfileManagementController {
     }
 
     @PatchMapping("/{username}")
-    public ResponseEntity<UserResponse> updateUser(@PathVariable String username,
+    public ResponseEntity<Void> updateUser(@PathVariable String username,
                                                    @Valid @RequestBody UpdateUserRequest request){
         try {
             profile_management.updateUser(username, request);
