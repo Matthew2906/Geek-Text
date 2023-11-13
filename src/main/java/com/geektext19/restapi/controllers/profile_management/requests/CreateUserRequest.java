@@ -7,15 +7,18 @@ import jakarta.validation.constraints.NotBlank;
 public class CreateUserRequest extends BaseUserRequest {
     @NotBlank(message = "username field can't be empty or null")
     private String username;
-    
-    @NotBlank(message = "email field can't be empty or null")
+
     private String email;
+
+    @NotBlank(message = "password field can't be empty or null")
+    private String password;
 
     public CreateUserRequest() {
     }
 
     public CreateUserRequest(String username, String password, String fullName, String email, String address) {
-        super(password, fullName, address);
+        super(fullName, address);
+        this.password = password;
         this.username = username;
         this.email = email;
     }
@@ -34,5 +37,13 @@ public class CreateUserRequest extends BaseUserRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
