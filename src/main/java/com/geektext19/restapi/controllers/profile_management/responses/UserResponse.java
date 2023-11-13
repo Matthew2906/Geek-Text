@@ -1,5 +1,6 @@
 package com.geektext19.restapi.controllers.profile_management.responses;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.NotBlank;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserResponse {
