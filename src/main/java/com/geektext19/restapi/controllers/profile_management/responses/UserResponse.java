@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserResponse {
-    @NotBlank(message = "username field cannot be left in blank or null")
     private String username;
     private String fullName;
     private String email;

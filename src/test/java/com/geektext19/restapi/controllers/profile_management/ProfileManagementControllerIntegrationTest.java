@@ -9,7 +9,6 @@ import com.geektext19.restapi.entities.CreditCard;
 import com.geektext19.restapi.entities.User;
 import com.geektext19.restapi.repositories.profile_management.CreditCardRepository;
 import com.geektext19.restapi.repositories.profile_management.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +22,6 @@ import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith({SpringExtension.class})
 @SpringBootTest(classes = GeekText19RestapiApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -56,6 +54,7 @@ public class ProfileManagementControllerIntegrationTest {
 
     @AfterEach
     public void tearDown() {
+        cardRepository.delete(creditCard);
         userRepository.delete(user);
     }
 
@@ -150,14 +149,11 @@ public class ProfileManagementControllerIntegrationTest {
     public void testUserCreditCard() {
         userRepository.save(user);
 
-        // Create a new user credit card object for testing
-        CreditCard newCreditCard = creditCardObject();
-
         CreateUserCreditCardRequest createUserCreditCardRequest = new CreateUserCreditCardRequest();
-        createUserCreditCardRequest.setCreditCardNumber(newCreditCard.getCreditCardNumber());
-        createUserCreditCardRequest.setCardholderName(newCreditCard.getCardholderName());
-        createUserCreditCardRequest.setExpirationDate(newCreditCard.getExpirationDate());
-        createUserCreditCardRequest.setCvv(newCreditCard.getCVV());
+        createUserCreditCardRequest.setCreditCardNumber(creditCard.getCreditCardNumber());
+        createUserCreditCardRequest.setCardholderName(creditCard.getCardholderName());
+        createUserCreditCardRequest.setExpirationDate(creditCard.getExpirationDate());
+        createUserCreditCardRequest.setCvv(creditCard.getCVV());
 
         // Create headers with JSON content type
         HttpHeaders createHeaders = new HttpHeaders();
@@ -174,9 +170,7 @@ public class ProfileManagementControllerIntegrationTest {
         // Validate result
         Assertions.assertEquals(HttpStatus.CREATED.value(), response.getStatusCode().value());
 
-
-        CreditCard updatedCreditCard = cardRepository.findById(creditCard.getCreditCardNumber())
-                .orElseThrow(() -> new EntityNotFoundException("CreditCard not found"));
+        CreditCard updatedCreditCard = cardRepository.findByCreditCardNumber(creditCard.getCreditCardNumber());
 
         Assertions.assertEquals(user.getUsername(), updatedCreditCard.getUser().getUsername());
         Assertions.assertEquals(createUserCreditCardRequest.getCreditCardNumber(), updatedCreditCard.getCreditCardNumber());
@@ -184,8 +178,6 @@ public class ProfileManagementControllerIntegrationTest {
         Assertions.assertEquals(createUserCreditCardRequest.getCvv(), updatedCreditCard.getCVV());
 
     }
-
-
 
     private String createURLWithPort(String uri) {
         return "http://localhost:" + this.port + uri;
