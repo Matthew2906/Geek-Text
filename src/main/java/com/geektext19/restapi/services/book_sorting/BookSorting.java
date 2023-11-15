@@ -8,12 +8,16 @@ public interface BookSorting {
      * @param genre
      * @return
      */
-    public List<Book> getBooksByGenre(String genre);
+    List<Book> getBooksByGenre(String genre);
 
     /**
      *
      * @return
      */
-    public List<Book> getTopSellers();
+    List<Book> getTopSellers();
+
+    List<Book> getBooksByRating(double rating);
+
+    void discountBooksByPublishers(double discount, String publisher);
 
 }
