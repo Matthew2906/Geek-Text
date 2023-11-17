@@ -5,25 +5,26 @@ import com.geektext19.restapi.controllers.profile_management.requests.CreateUser
 import com.geektext19.restapi.controllers.profile_management.requests.UpdateUserRequest;
 import com.geektext19.restapi.controllers.profile_management.responses.UserResponse;
 import com.geektext19.restapi.services.profile_management.ProfileManagement;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import com.geektext19.restapi.controllers.profile_management.exceptions.UserNotFoundException;
 
 @RestController
 @RequestMapping(ProfileManagementController.BASE_ENDPOINT)
 public class ProfileManagementController {
     public final static String BASE_ENDPOINT = "/profile-management";
-    private final ProfileManagement PROFILE_MANAGEMENT;
+    private final ProfileManagement profile_management;
 
-    public ProfileManagementController(ProfileManagement PROFILE_MANAGEMENT) {
-        this.PROFILE_MANAGEMENT = PROFILE_MANAGEMENT;
+    public ProfileManagementController(ProfileManagement profile_management) {
+        this.profile_management = profile_management;
     }
 
     @GetMapping("/{username}")
     public ResponseEntity<UserResponse> getUserDetails(@PathVariable String username){
         try {
-            UserResponse user = PROFILE_MANAGEMENT.getUserDetails(username);
+            UserResponse user = profile_management.getUserDetails(username);
             return ResponseEntity.ok(user);
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -33,9 +34,9 @@ public class ProfileManagementController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest request){
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request){
         try {
-            PROFILE_MANAGEMENT.createUser(request);
+            profile_management.createUser(request);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -43,11 +44,11 @@ public class ProfileManagementController {
     }
 
     @PatchMapping("/{username}")
-    public ResponseEntity<UserResponse> updateUser(@PathVariable String username,
-                                                   @RequestBody UpdateUserRequest request){
+    public ResponseEntity<Void> updateUser(@PathVariable String username,
+                                                   @Valid @RequestBody UpdateUserRequest request){
         try {
-            PROFILE_MANAGEMENT.updateUser(username, request);
-            return ResponseEntity.noContent().build();
+            profile_management.updateUser(username, request);
+            return ResponseEntity.ok().build();
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception ex) {
@@ -56,11 +57,11 @@ public class ProfileManagementController {
     }
 
     @PostMapping("/credit-card/{username}")
-    public ResponseEntity<Object> createCreditCard(@PathVariable String username, @RequestBody CreateUserCreditCardRequest request){
-        // @jakarta.validation.Valid
+    public ResponseEntity<Object> createCreditCard(@PathVariable String username,
+                                                   @Valid @RequestBody CreateUserCreditCardRequest request){
         try {
-            PROFILE_MANAGEMENT.addCreditCardToUser(username, request);
-            return ResponseEntity.noContent().build();
+            profile_management.addCreditCardToUser(username, request);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception ex) {
