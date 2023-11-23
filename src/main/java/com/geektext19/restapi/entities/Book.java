@@ -19,7 +19,7 @@ public class Book {
 
     public Book(){}
 
-    public Book(String isbn, String bookName, String description, double price){
+    public Book(String isbn, String bookName, String description, double price, String author, String genre, String publisher, int yearPublished, int copiesSold, double rating) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.description = description;
@@ -30,7 +30,6 @@ public class Book {
         this.yearPublished = yearPublished;
         this.copiesSold = copiesSold;
         this.rating = rating;
-
     }
 
     public String getPublisher() {
