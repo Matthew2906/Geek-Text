@@ -8,14 +8,11 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long author_id;
     private String firstName;
     private String lastName;
     private String biography;
     private String publisher;
-  //  @OneToMany(mappedBy = "author")
-   // private List<Book> books;
-
     public Author() {}
 
     public Author(String firstName, String lastName, String biography, String publisher) {
@@ -25,12 +22,20 @@ public class Author {
         this.publisher = publisher;
     }
 
-    public Long getId() {
-        return id;
+    public Author(String firstName, String lastName, String biography, String publisher, Long author_id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.biography = biography;
+        this.publisher = publisher;
+        this.author_id = author_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return author_id;
+    }
+
+    public void setId(Long author_id) {
+        this.author_id = author_id;
     }
 
     public String getFirstName() {
@@ -65,12 +70,4 @@ public class Author {
         this.publisher = publisher;
     }
 
-   // public List<Book> getBooks() {
-     //   return books;
-    //}
-
-    //public void setBooks(List<Book> books) {
-      //  this.books = books;
-    }
-
-//
+}//

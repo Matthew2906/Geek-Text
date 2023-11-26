@@ -2,6 +2,7 @@ package com.geektext19.restapi.controllers.Book_details;
 
 import com.geektext19.restapi.controllers.Book_details.request.CreateAuthorRequest;
 import com.geektext19.restapi.controllers.Book_details.request.CreateBookRequest;
+import com.geektext19.restapi.entities.Author;
 import com.geektext19.restapi.entities.Book;
 import com.geektext19.restapi.services.Book_detail.BookDetails;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +21,18 @@ public class BookDetailsController {
         this.BOOK_DETAILS = bookDetails;
     }
 
-    @PostMapping
-    public ResponseEntity<?> createBook(@RequestBody CreateBookRequest request){
+
+    @PostMapping("/book")
+    public ResponseEntity<?> createBook(@RequestBody CreateBookRequest request) {
         BOOK_DETAILS.createBook(request);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{isbn}")
-    public ResponseEntity<Book> getBookDetails(@PathVariable String isbn){
+    public ResponseEntity<Book> getBookDetails(@PathVariable String isbn) {
         Book bookDetails = BOOK_DETAILS.getBookDetails(isbn);
         return ResponseEntity.ok(bookDetails);
-                //bookDetails != null ? ResponseEntity.ok(bookDetails) : ResponseEntity.notFound().build();
+        //bookDetails != null ? ResponseEntity.ok(bookDetails) : ResponseEntity.notFound().build();
     }
 
     @PostMapping("/author")
@@ -39,8 +41,8 @@ public class BookDetailsController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/author/{authorId}/books")
-    public ResponseEntity<List<Book>> getBooklist(@PathVariable String authorId) {
+    @GetMapping("/books-by-author:{authorId}")
+    public ResponseEntity<List<Book>> getBookByAuthorId(@PathVariable Author authorId) {
         List<Book> books = BOOK_DETAILS.getBooklist(authorId);
         return ResponseEntity.ok(books);
         // return books.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(books);

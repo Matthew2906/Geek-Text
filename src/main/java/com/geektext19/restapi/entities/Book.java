@@ -9,27 +9,35 @@ public class Book {
     private String bookName;
     private String description;
     private double price;
-    private String author;
+    //private String author;
     private String genre;
     private String publisher;
     private int yearPublished;
-
     private int copiesSold;
     private double rating;
-
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "author_id")
+    private Author authorId;
     public Book(){}
-
-    public Book(String isbn, String bookName, String description, double price, String author, String genre, String publisher, int yearPublished, int copiesSold, double rating) {
+    public Book(String isbn, String bookName, String description, double price, String genre, String publisher, int yearPublished, int copiesSold, double rating, Author authorId) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.description = description;
         this.price = price;
-        this.author = author;
         this.genre = genre;
         this.publisher = publisher;
         this.yearPublished = yearPublished;
         this.copiesSold = copiesSold;
         this.rating = rating;
+        this.authorId = authorId;
+    }
+
+    public Author getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Author authorId) {
+        this.authorId = authorId;
     }
 
     public String getPublisher() {
@@ -78,14 +86,6 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getGenre() {

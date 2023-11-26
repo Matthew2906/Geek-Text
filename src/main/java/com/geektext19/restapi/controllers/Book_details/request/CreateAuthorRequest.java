@@ -1,5 +1,8 @@
 package com.geektext19.restapi.controllers.Book_details.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateAuthorRequest {
     private Long id;
     private String firstName;

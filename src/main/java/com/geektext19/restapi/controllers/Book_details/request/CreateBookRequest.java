@@ -1,17 +1,28 @@
 package com.geektext19.restapi.controllers.Book_details.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.geektext19.restapi.entities.Author;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateBookRequest {
     private String ISBN;
     private String bookName;
     private String description;
     private double price;
-    private String authorName; // Representing author simply by name in this DTO
     private String genre;
     private String publisher;
     private int yearPublished;
     private int copiesSold;
-
     private double rating;
+    private Author authorId;
+
+    public Author getAuthorId(){
+        return authorId;
+    }
+
+    public void setAuthorId(Author authorId){
+        this.authorId = authorId;
+    }
 
     public String getISBN() {
         return ISBN;
@@ -43,14 +54,6 @@ public class CreateBookRequest {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
     }
 
     public String getGenre() {
@@ -89,6 +92,3 @@ public class CreateBookRequest {
 
     public void setRating(double rating) {this.rating = rating;}
 }
-
-
-
